@@ -20,7 +20,7 @@ namespace API.Controllers
     [Authorize]
     public class UsersController : BaseApiController
     {
-        //private readonly DataContext _context;
+        // private readonly DataContext _context;
         // public UsersController(DataContext context)
         // {
         //     _context = context;
@@ -36,14 +36,15 @@ namespace API.Controllers
             _userRepository = userRepository;
         }
 
-        //[HttpGet]
-        //[AllowAnonymous]
+        // [HttpGet]
+        // [AllowAnonymous]
         // public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         // {
         //     //return await _context.Users.ToListAsync();
         //     return Ok(await _userRepository.GetUsersAsync());
         // }
 
+        // [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDTO>>> GetUsers([FromQuery] UserParams userParams)
         {
@@ -66,8 +67,8 @@ namespace API.Controllers
             return Ok(users);
         }
 
-        //[Authorize]
-        //api/users/id
+        // [Authorize]
+        // api/users/id
         // [HttpGet("{id}")]
         // public async Task<ActionResult<AppUser>> GetUser(int id)
         // {
@@ -80,6 +81,7 @@ namespace API.Controllers
         //     return await _userRepository.GetUserByUsernameAsync(username);
         // }
 
+        //[Authorize(Roles = "Member")]
         [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemberDTO>> GetUser(string username)
         {
