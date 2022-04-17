@@ -73,11 +73,17 @@ namespace API
 
             app.UseAuthorization();
 
+            // Used when publishing the application
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<PresenceHub>("hubs/presence"); // required when using SignalR
                 endpoints.MapHub<MessageHub>("hubs/message"); // required when using SignalR
+
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }
